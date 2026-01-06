@@ -914,8 +914,8 @@
         }
 
         .user-avatar img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: auto;
             border-radius: 8px;
             object-fit: cover;
         }
@@ -960,6 +960,13 @@
         .model-name {
             color: #3498db;
             font-weight: 500;
+        }
+
+        .gallery-grid img {
+          width: 100%;
+          aspect-ratio: 4 / 3;   /* 想用 16/9 就改成 16 / 9 */
+          object-fit: cover;
+          border-radius: 18px;
         }
 
 
@@ -1022,7 +1029,6 @@
           </div>
       
           <div class="hero-divider"></div>
-      
           <div class="institution-logos">
             <a href="https://www.mmlab-ntu.com" target="_blank" rel="noopener noreferrer">
               <img src="./zoomiqa/NTU_logo.png" alt="NTU Logo" onerror="this.style.display='none';this.parentElement.innerHTML='🏫 S-Lab, NTU <sup>1</sup>'"/>
@@ -1043,122 +1049,69 @@
           <div class="section-subtitle">
             Zoom-IQA demonstrates superior image quality assessment capabilities across various real-world scenarios. Explore our results below.
           </div>
-
           <div class="results-carousel-container">
             <div class="carousel-mask-left"></div>
             <div class="carousel-mask-right"></div>
-            <div class="results-carousel">
+            <div class="results-carousel gallery-grid">
                 <div class="carousel-item">
-                  <div class="comparison-slider">
-                    <figure class="comparison-figure">
-                        <img src="./zoomiqa/restoration1_input.png" alt="Before" class="comparison-before">
-                        <div class="comparison-separator">
-                            <span class="separator-arrows"></span>
-                        </div>
-                        <img src="./zoomiqa/restoration1_output.png" alt="After" class="comparison-after">
-                        <div class="comparison-label input-label">Input</div>
-                        <div class="comparison-label output-label">Output</div>
-                    </figure>
-                  </div>
+                  <img src="./zoomiqa/iqa1.jpg", alt="Zoom-IQA image 1", onclick="openZoom(this)" >
                   <div class="hidden-conversation-data">
-                      <div class="instruction">Could you assess the overall quality of the image and elaborate on your evaluation? Please then provide a restoration plan that includes the order in which the restoration tasks will be performed, as well as the corresponding model selection.</div>
-                      <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                      <div class="tasks">
-                          <div class="task">Denoising</div>
-                          <div class="model">SCUnet</div>
-                          <div class="task">Dehaze</div>
-                          <div class="model">RIDCP</div>
-                          <div class="task">Enhancement</div>
-                          <div class="model">LightenDiff</div>
-                      </div>
-                  <div class="result-img">after/img1.png</div>
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Image Quality Summary: The image suffers from motion blur, most prominently affecting the main subject, the rickshaw, and the people moving around it. Exposure is uneven, with some bright areas on the pavement and shadows obscuring details elsewhere. Overall, the technical quality is fair due to motion artifacts. Directions for Improvement: Capturing the facial expressions and clothing textures of the people walking near the rickshaw with precise focus would yield a highly detailed scene. Issues to Avoid: Extreme motion blur severely softens the details of the rickshaw's canopy and the moving figures, including the woman in the striped shirt and the man pushing the cart. Decision & Rationale: I assign a moderate score because while the composition is dynamic, the motion blur compromises the image integrity. A crop is necessary to confirm the extent and nature of the motion blur, specifically examining how much detail is lost in the faces and clothing of the people interacting with the rickshaw versus the clearer foreground pavement. The bounding box [0.29, 0.24, 0.88, 0.73] isolates the main area of motion artifact and sharpness comparison. <strong>Answer content</strong>: {"bbox_2d": [0.29, 0.24, 0.88, 0.73], "rating": 3.56, "tool": "crop"}</div>
+                      <div class="instruction">Here is the crop of the image. You are analyzing the original image and the provided crop for a final quality assessment.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Crop Inspection Summary: While the foreground pavement remains sharp, the crop clearly shows how the motion blur renders the woman's face and clothing (right side) and the man's lower body (left side) indistinct. The final quality remains fair. Directions for Improvement: Achieving sharp focus on the woman's striped shirt and the passenger's legs within the rickshaw would greatly improve the scene's detail. The spokes of the large wheel should exhibit precise, crisp detail without streaking. Issues to Avoid: Severe motion blur renders the woman's face and hair indistinguishable and smears the clothing textures on both the man and the woman. Final Decision & Rationale: The crop confirmed this issue, revealing that the motion blur is indeed extreme on the faces and clothing of the people around the rickshaw, confirming the primary flaw. The final rating is 3.47. <strong>Answer content</strong>: {"bbox_2d": [0, 0, 0, 0], "rating": 3.47, "tool": "final"}</div>
+                  <div class="result-img">zoomiqa/iqa1.jpg</div>
                   </div>
                 </div>
 
                 <div class="carousel-item">
-                  <div class="comparison-slider">
-                      <figure class="comparison-figure">
-                          <img src="./zoomiqa/restoration2_input.png" alt="Before" class="comparison-before">
-                          <div class="comparison-separator">
-                              <span class="separator-arrows"></span>
-                          </div>
-                          <img src="./zoomiqa/restoration2_output.png" alt="After" class="comparison-after">
-                          <div class="comparison-label input-label">Output</div>
-                          <div class="comparison-label output-label">Input</div>
-                      </figure>
-                  </div>
+                  <img src="./zoomiqa/iqa2.jpg", alt="Zoom-IQA image 2", onclick="openZoom(this)" >
                   <!-- Hidden data for conversation update -->
                   <div class="hidden-conversation-data">
-                      <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                      <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                      <div class="tasks">
-                          <div class="task">Dehaze</div>
-                          <div class="model">RIDCP</div>
-                          <div class="task">Denoising</div>
-                          <div class="model">SCUnet</div>
-                          <div class="task">Super-resolution</div>
-                          <div class="model">Real-ESRGAN</div>
-                      </div>
-                      <div class="result-img">results/after/img5.png</div>
+                    <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                    <div class="rationale"> <strong>Think content</strong>: Image Quality Summary: The overall sharpness is poor due to significant motion blur and general softness affecting all areas, particularly the vehicle. Exposure issues exist, with blown-out highlights in the background sky area. Overall quality is assessed as fair. Directions for Improvement: Achieving crisp clarity on the dense green shrubbery in the midground would enhance depth perception and texture visibility. Furthermore, ensuring balanced illumination throughout the scene would reveal subtle details within the bright background foliage. Issues to Avoid: Excessive general softness degrades the definition of the approaching black vehicle, making its license plate and body lines indistinct. Blown highlights completely wash out any meaningful detail in the bright background sky area. Decision & Rationale: The primary uncertainty lies in assessing the extent of sharpness loss on crucial elements like the vehicle's license plate and the detailed textures of the foreground foliage. A crop is necessary to confirm the severity of the lack of fine detail registration.<strong>Answer content</strong>: {"bbox_2d": [0.37, 0.12, 0.96, 0.7], "rating": 2.98, "tool": "crop"}</div>
+                    <div class="instruction">Here is the crop of the image. You are analyzing the original image and the provided crop for a final quality assessment.</div>
+                    <div class="rationale"> <strong>Think content</strong>: Crop Inspection Summary: The crop, focused on the approaching vehicle and the foreground foliage, confirms the initial diagnosis of severe motion blur and general lack of sharpness. Fine details on the vehicle's license plate and the dense shrubbery are completely obscured, validating the assessment that the image suffers from significant clarity degradation. The final quality verdict remains fair. Directions for Improvement: Achieving sharp rendering of the dense green leaves in the midground would provide excellent depth and texture definition. Optimal focus registration on the approaching black vehicle would ensure the license plate characters and the headlight details are perfectly crisp and legible. Issues to Avoid: Significant motion blur renders the green foliage indistinct and mushy, lacking fine leaf detail. Excessive general softness degrades the definition of the vehicle's front grille and logo, making them appear indistinct blobs. Final Decision & Rationale: The crop confirmed that the image suffers from pervasive motion blur and general softness, which severely degrades the primary subjects. Since the findings confirmed the initial assessment of poor quality without revealing any unexpected strengths or weaknesses, the final rating is slightly adjusted but remains consistent with the initial judgment. <strong>Answer content</strong>: {"bbox_2d": [0, 0, 0, 0], "rating": 2.89, "tool": "final"}</div>
+                    <div class="result-img">zoomiqa/iqa2.jpg</div>
                   </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="comparison-slider">
-                    <figure class="comparison-figure">
-                        <img src="./zoomiqa/restoration3_input.png" alt="Before" class="comparison-before">
-                        <div class="comparison-separator">
-                            <span class="separator-arrows"></span>
-                        </div>
-                        <img src="./zoomiqa/restoration3_output.png" alt="After" class="comparison-after">
-                        <div class="comparison-label input-label">Output</div>
-                        <div class="comparison-label output-label">Input</div>
-                    </figure>
                 </div>
-                <!-- Hidden data for conversation update -->
-                <div class="hidden-conversation-data">
-                    <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                    <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                    <div class="tasks">
-                        <div class="task">Dehaze</div>
-                        <div class="model">RIDCP</div>
-                        <div class="task">Denoising</div>
-                        <div class="model">SCUnet</div>
-                        <div class="task">Super-resolution</div>
-                        <div class="model">Real-ESRGAN</div>
-                    </div>
-                    <div class="result-img">results/after/img5.png</div>
-                </div>
-            </div>
 
-            <div class="carousel-item">
-              <div class="comparison-slider">
-                  <figure class="comparison-figure">
-                      <img src="./zoomiqa/restoration4_output.png" alt="Before" class="comparison-before">
-                      <div class="comparison-separator">
-                          <span class="separator-arrows"></span>
-                      </div>
-                      <img src="./zoomiqa/restoration4_output.png" alt="After" class="comparison-after">
-                      <div class="comparison-label input-label">Output</div>
-                      <div class="comparison-label output-label">Input</div>
-                  </figure>
-              </div>
-              <!-- Hidden data for conversation update -->
-              <div class="hidden-conversation-data">
-                  <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                  <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                  <div class="tasks">
-                      <div class="task">Dehaze</div>
-                      <div class="model">RIDCP</div>
-                      <div class="task">Denoising</div>
-                      <div class="model">SCUnet</div>
-                      <div class="task">Super-resolution</div>
-                      <div class="model">Real-ESRGAN</div>
+                <div class="carousel-item">
+                  <img src="./zoomiqa/iqa3.jpg", alt="Zoom-IQA image 3", onclick="openZoom(this)" >
+                  <!-- Hidden data for conversation update -->
+                  <div class="hidden-conversation-data">
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Image Quality Summary: The image suffers from general softness across the frame, particularly affecting the main subjects drawing at the table. Digital noise is also present, especially in shadowed areas and mid-tones. The overall quality is considered good but lacks sharpness and clarity. Directions for Improvement: Achieving sharp focus on the faces of the children, especially the girl in the pink jacket and the girl in the yellow jacket, would greatly enhance the viewer engagement. Optimal illumination would render crisp details within the coloring books and the art supplies organized on the wooden table surface. Issues to Avoid: Significant lack of sharpness diminishes the fine detail definition in the foreground subjects' clothing and hair. Excessive digital grain obscures subtle textures in the darker areas, such as the boy's red jacket and the shadows beneath the tables. Decision & Rationale: Given the overall composition is clear and the primary issue is generalized softness rather than severe motion blur or critical focus failure, a localized crop is beneficial to confirm the extent of the resolution loss and digital grain. I will crop the central area focusing on the three visible children and the immediate table surface to better assess the sharpness of their features and the clarity of the artwork. <strong>Answer content</strong>: {"bbox_2d": [0.2, 0.15, 0.88, 0.68], "rating": 3.79, "tool": "crop"}</div>
+                      <div class="instruction">Here is the crop of the image. You are analyzing the original image and the provided crop for a final quality assessment.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Crop Inspection Summary: The crop, focused on the main subjects, confirms the initial diagnosis of generalized softness and moderate digital grain. Fine details on the faces, such as the eyes and hair strands, lack crisp definition due to missed focus or slight motion blur. The digital grain is clearly visible in the mid-tones and shadows, particularly on the jackets and skin. Directions for Improvement: Optimal sharpness would render the texture of the fluffy pink jacket with clarity. The details of the coloring book pages would be perfectly crisp, showing every pencil line without blurring. Issues to Avoid: The faces of all four children suffer from generalized softness, confirming missed focus points. Excessive digital grain obscures fine detail in the dark hair and shadows around the subjects. Final Decision & Rationale: My initial rating was 3.79, and the reason for the crop was to confirm the extent of resolution loss and digital grain. The crop confirmed that the image suffers from softness and moderate digital grain. Since the issues were neither significantly better nor worse than anticipated, the final rating is confirmed. The final score is 3.79. <strong>Answer content</strong>: {“bbox_2d”: [0, 0, 0, 0], “rating”: 3.79, “tool”: “final"}</div>
+                      <div class="result-img">zoomiqa/iqa3.jpg</div>
                   </div>
-                  <div class="result-img">results/after/img5.png</div>
-              </div>
-          </div>
+                </div>
+
+                <div class="carousel-item">
+                  <img src="./zoomiqa/iqa4.JPG", alt="Zoom-IQA image 4", onclick="openZoom(this)" >
+                  <!-- Hidden data for conversation update -->
+                  <div class="hidden-conversation-data">
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Image Quality Summary: The overall composition and color fidelity are excellent, showcasing vibrant hues and intricate geometric patterns effectively. However, the image suffers from generalized softness across the entire frame, indicating slight missed focus or low resolution capture. Minor digital artifacts, likely resulting from compression or post-processing, are present along some high-contrast edges. Overall quality is considered good. Directions for Improvement: Achieving superior clarity would involve ensuring crisp definition around the edges of the teal and orange modular units in the foreground, maximizing the tactile appearance of the material. Optimal sharpness would reveal the texture and depth within the folds of the green and blue components throughout the mid-ground. Issues to Avoid: Significant generalized lack of sharpness diminishes the fine detail across the entire patterned surface, particularly noticeable on the edges of the large green and teal shapes in the mid-ground. Minor digital artifacts compromise the integrity of the sharpness along the boundaries between the orange and adjacent colored sections.
+                        Decision & Rationale: Given the overall clarity and vibrant presentation, the primary issue is generalized softness which is uniformly distributed and clearly visible without magnification. Therefore, a final decision can be made without needing a crop. I assign a score reflective of its strong composition being slightly held back by minor focus issues.
+                        <strong>Answer content</strong>: {"bbox_2d": [0, 0, 0, 0], "rating": 4.18, "tool": "final"}</div>
+                      <div class="result-img">zoomiqa/iqa4.JPG</div>
+                  </div>
+                </div>
                 
+                <div class="carousel-item">
+                  <img src="./zoomiqa/iqa5.jpg", alt="Zoom-IQA image 5", onclick="openZoom(this)" >
+                  <!-- Hidden data for conversation update -->
+                  <div class="hidden-conversation-data">
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"> <strong>Think content</strong>: Image Quality Summary: The primary technical flaw is severe motion blur or camera shake, rendering all plant leaves soft and lacking definition. Resolution is very low throughout the frame. Additionally, the bright white background areas are slightly overexposed. The overall quality is poor due to the extreme lack of sharpness.
+                        Directions for Improvement: Achieving sharp focus would render the veins and textures on the large foreground leaves highly detailed and clear. Optimal exposure settings would ensure the bright white backdrop maintains subtle tonal gradations without losing highlight detail. The small yellow object on the left side would possess crisp, defined edges. 
+                        Issues to Avoid: Extreme motion blur obscures the fine details across all the green plant leaves, especially those in the center and foreground. Blown highlights completely wash out any texture or information in the bright white background areas. A general lack of sharpness pervades the entire composition. Decision & Rationale: Given the extreme and uniform nature of the motion blur across the entire image, there is no ambiguity regarding the image's core flaw that requires magnification via cropping. Therefore, a final decision can be made based on the full frame. The rating reflects the severity of the motion blur combined with the overexposure. <strong>Answer content</strong>: {"bbox_2d": [0, 0, 0, 0], "rating": 2.29, "tool": "final"}</div>
+                      <div class="result-img">zoomiqa/iqa5.jpg</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1167,7 +1120,7 @@
           <div class="conversation-container">
               <div class="user-message">
                   <div class="user-content">
-                      <p style="margin-bottom: 0px">Please evaluate the image's quality comprehensively and provide your insights. Additionally, outline a step-by-step restoration strategy, specifying the sequence of tasks and model choices for each step.</p>
+                      <p style="margin-bottom: 0px">What's your opinion on the quality of this picture?</p>
                   </div>
                   <div class="user-avatar">
                       <img src="zoomiqa/user_logo.png" alt="User">
@@ -1179,14 +1132,7 @@
                       <img src="zoomiqa/zoomiqa_logo.png" alt="Zoom-IQA Logo">
                   </div>
                   <div class="model-content">
-                      <p class="rationale" id="rationale"><strong>Rationale:</strong> The image shows a snowy scene with falling snowflakes obscuring visibility. The evaluated image has reduced contrast due to the bright snow particles, creating a hazy appearance and making it difficult to see road markings and other important details.</p>
-                      
-                      <p class="restoration-sequence"><strong>The restoration task sequences:</strong></p>
-                      <ul class="task-list">
-                          <li><strong>Task1:</strong> desnowing (<span class="model-name">Img2img-turbo</span>)</li>
-                          <li><strong>Task2:</strong> contrast enhancement (<span class="model-name">DIHL1</span>)</li>
-                          <li><strong>Task3:</strong> denoising (<span class="model-name">SCUnet</span>)</li>
-                      </ul>
+                      <p class="rationale" id="rationale"><strong>Think content:</strong> The image shows a snowy scene with falling snowflakes obscuring visibility. The evaluated image has reduced contrast due to the bright snow particles, creating a hazy appearance and making it difficult to see road markings and other important details.</p>
                   </div>
               </div>
           </div>
@@ -1217,17 +1163,11 @@
                     </figure>
                   </div>
                   <div class="hidden-conversation-data">
-                      <div class="instruction">Could you assess the overall quality of the image and elaborate on your evaluation? Please then provide a restoration plan that includes the order in which the restoration tasks will be performed, as well as the corresponding model selection.</div>
-                      <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                      <div class="tasks">
-                          <div class="task">Denoising</div>
-                          <div class="model">SCUnet</div>
-                          <div class="task">Dehaze</div>
-                          <div class="model">RIDCP</div>
-                          <div class="task">Enhancement</div>
-                          <div class="model">LightenDiff</div>
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"><strong>Think content</strong>: Image Quality Summary: The primary subject is well-lit and sharp, particularly around the face and eyes, creating strong visual focus. However, the entire image suffers from excessive digital grain or texture applied uniformly across all tonal areas, which severely degrades overall clarity and smoothness. This heavy processing masks subtle details and contributes to a generally rough appearance, despite the good composition. The overall quality leans toward good due to the effective primary focus.
+                        Directions for Improvement: Achieving superior smoothness and refined texture definition within the dark suit jacket and the background would greatly enhance realism and depth perception. Optimal clarity should be present in the facial hair and skin texture, allowing the subtle wrinkles on the forehead and brow to appear perfectly sharp and natural. Furthermore, ensuring the illuminated areas of the face maintain smooth gradients would maximize the dramatic effect of the lighting. Issues to Avoid: Excessive digital grain or artificial texture is highly distracting and negatively impacts the smooth surfaces of the face, especially around the forehead and cheekbones. This heavy processing obscures fine details and contributes to a gritty, unnatural appearance throughout the dark suit jacket. Additionally, the extreme darkness in the background areas results in a significant loss of shadow detail. Decision & Rationale: I will issue a final decision because the main technical flaw-the heavy, uniform grain-is clearly evident throughout the entire composition, including the face and suit. A localized crop is unnecessary as there remains no ambiguity regarding the nature or extent of this processing artifact. Given the effective composition and good focus on the primary subject's eyes, despite the overall graininess, the score is set above average. I assign a score reflecting the balance between good composition and poor technical execution. Answer content: {"bbox_2d": [0, 0, 0, 0], "rating": 3.46, "tool": "final"}
                       </div>
-                  <div class="result-img">after/img1.png</div>
+                    <div class="result-img">zoomiqa/restoration1_output.png</div>
                   </div>
                 </div>
 
@@ -1245,17 +1185,9 @@
                   </div>
                   <!-- Hidden data for conversation update -->
                   <div class="hidden-conversation-data">
-                      <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                      <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                      <div class="tasks">
-                          <div class="task">Dehaze</div>
-                          <div class="model">RIDCP</div>
-                          <div class="task">Denoising</div>
-                          <div class="model">SCUnet</div>
-                          <div class="task">Super-resolution</div>
-                          <div class="model">Real-ESRGAN</div>
-                      </div>
-                      <div class="result-img">results/after/img5.png</div>
+                      <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                      <div class="rationale"><strong>Think content</strong>: Image Quality Summary: The primary issue with this photograph is extreme global defocus, rendering the entire scene blurry and lacking sharpness. While the composition and lighting are simple, the lack of a clear focal point obscures all fine detail in the subject's fur and face. There is also some visible digital noise or grain throughout the image, further reducing clarity. Overall, the technical execution results in a very low-quality image. Directions for Improvement: Achieving sharp focus on the dog's eyes would enhance the portrait's engagement and expressiveness. Ensuring crisp detail across the varied textures of the dog's coat and the blue collar would greatly improve the overall clarity of the main subject. A well-defined nose would provide a strong anchor point for the viewer's gaze. Issues to Avoid: Extreme softness and blur completely obscure any fine detail or texture on the dog's face and ears. Significant digital noise or grain degrades the smooth appearance of the background and the subject's fur. The lack of sharpness makes the identification of individual hairs or facial features impossible. Decision & Rationale: Given the severity and uniformity of the blurring, there is no ambiguity regarding the technical flaws that requires localized investigation via cropping. Therefore, a final decision can be made. The rating is extremely low because the fundamental photographic goal-sharp depiction of the subject-has been entirely missed. Answer content: {"bbox_2d": [0, 0, 0, 0], "rating": 1.92, "tool": "final"}</div>
+                      <div class="result-img">zoomiqa/restoration2_output.png</div>
                   </div>
               </div>
 
@@ -1273,24 +1205,17 @@
                 </div>
                 <!-- Hidden data for conversation update -->
                 <div class="hidden-conversation-data">
-                    <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                    <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                    <div class="tasks">
-                        <div class="task">Dehaze</div>
-                        <div class="model">RIDCP</div>
-                        <div class="task">Denoising</div>
-                        <div class="model">SCUnet</div>
-                        <div class="task">Super-resolution</div>
-                        <div class="model">Real-ESRGAN</div>
-                    </div>
-                    <div class="result-img">results/after/img5.png</div>
+                    <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                    <div class="rationale"><strong>Think content</strong>: Image Quality Summary: The image suffers from severe global defocus blur, rendering all facial features-eyes, nose, mouth, and the kanji character on the headband-as soft and indistinct shapes. While the color palette is vibrant and the composition is dynamic, the fundamental lack of sharpness makes the overall presentation poor.
+                      Directions for Improvement: Optimal clarity would render the sharp, defined edges of the prominent black kanji character on the gray headband. Precise focus would ensure the subject's eyes and nose exhibit crisp detail, allowing the viewer to appreciate the subtle shading and expression. Achieving sharp rendering of the white hair framing the face would complete the detailed portrait. Issues to Avoid: Extreme defocus blurring obscures all fine detail across the face, particularly degrading the definition of the eyes and mouth. The heavy blur also renders the kanji character on the headband indistinct and lacking sharpness. This pervasive lack of focus compromises the entire composition, including the white hair and the red headband strap. Decision & Rationale: Given the extreme and uniform nature of the blur across the entire frame, there remains no area of ambiguity or fine detail that requires localized magnification via cropping to accurately assess the quality. Therefore, a final decision can be made based on the full image. Answer content: {"bbox_2d": [0, 0, 0, 0], "rating": 2.59, "tool": "final"}. </div>
+                    <div class="result-img">zoomiqa/restoration3_output.png</div>
                 </div>
             </div>
 
             <div class="carousel-item">
               <div class="comparison-slider">
                   <figure class="comparison-figure">
-                      <img src="./zoomiqa/restoration4_output.png" alt="Before" class="comparison-before">
+                      <img src="./zoomiqa/restoration4_input.png" alt="Before" class="comparison-before">
                       <div class="comparison-separator">
                           <span class="separator-arrows"></span>
                       </div>
@@ -1301,17 +1226,9 @@
               </div>
               <!-- Hidden data for conversation update -->
               <div class="hidden-conversation-data">
-                  <div class="instruction">Analyze the quality of the image comprehensively and provide your insights. Furthermore, propose a restoration strategy by detailing each task and model choice sequentially.</div>
-                  <div class="rationale">The image portrays a moody, foggy street scene at dusk or early evening. While the atmospheric lighting and composition are effective in conveying a sense of solitude, the quality is degraded by dense fog , which significantly reduces visibility and sharpness. Details of the background, such as distant houses and trees, are heavily obscured, making them difficult to discern. The image also exhibits uneven focus , particularly in the mid-ground and background, where the fog further blurs textures and edges. Additionally, the overall low light conditions contribute to a lack of contrast and clarity.</div>
-                  <div class="tasks">
-                      <div class="task">Dehaze</div>
-                      <div class="model">RIDCP</div>
-                      <div class="task">Denoising</div>
-                      <div class="model">SCUnet</div>
-                      <div class="task">Super-resolution</div>
-                      <div class="model">Real-ESRGAN</div>
-                  </div>
-                  <div class="result-img">results/after/img5.png</div>
+                  <div class="instruction">What's your opinion on the quality of this picture? Please provide your assessment and reasoning.</div>
+                  <div class="rationale"><strong>Think content</strong>: Image Quality Summary: The primary focus is extremely shallow, rendering the snake's head sharp while blurring the body significantly. While the composition is striking, the extensive motion blur across the main subject compromises the overall detail and texture clarity. Exposure is well-managed between the bright orange scales and the deep black background, though some specular highlights are present. Overall quality is fair due to the extensive blur.\nDirections for Improvement (positive-only, grounded): Achieving crisp definition along the entire length of the snake's body would enhance the visual appeal, particularly bringing out the intricate scale patterns on the curled segments. Optimal clarity around the snake's head and eye would allow the viewer to appreciate the fine detail of its features. Maintaining bright, vibrant color saturation on the orange scales is desirable.\nIssues to Avoid (negative-only, grounded): Significant motion blur obscures all fine detail and texture across the majority of the snake's body, creating a smeared appearance from the head back toward the tail. The extremely shallow depth of field results in excessive softness along the main body structure. Specular highlights on the scales near the head are slightly distracting.\nDecision & Rationale: Given the extreme lack of sharpness across the main subject due to motion blur, a crop is necessary to confirm the exact plane of focus and assess the severity of the blur on the detailed head area versus the blurred body. This will help finalize the rating based on the degree of motion degradation. I assign an initial score reflective of the major flaw. Answer content: >{\"bbox_2d\": [0.0, 0.37, 1.0, 0.96], \"rating\": 2.76, \"tool\": \"crop\"}</div>
+                  <div class="result-img">zoomiqa/restoration4_output.png</div>
               </div>
           </div>
                 
@@ -1323,7 +1240,7 @@
           <div class="conversation-container">
               <div class="user-message">
                   <div class="user-content">
-                      <p style="margin-bottom: 0px">Please evaluate the image's quality comprehensively and provide your insights. Additionally, outline a step-by-step restoration strategy, specifying the sequence of tasks and model choices for each step.</p>
+                    <p style="margin-bottom: 0px">What's your opinion on the quality of this picture?</p>
                   </div>
                   <div class="user-avatar">
                       <img src="zoomiqa/user_logo.png" alt="User">
@@ -1335,14 +1252,8 @@
                       <img src="zoomiqa/zoomiqa_logo.png" alt="Zoom-IQA Logo">
                   </div>
                   <div class="model-content">
-                      <p class="rationale" id="rationale"><strong>Rationale:</strong> The image shows a snowy scene with falling snowflakes obscuring visibility. The evaluated image has reduced contrast due to the bright snow particles, creating a hazy appearance and making it difficult to see road markings and other important details.</p>
-                      
-                      <p class="restoration-sequence"><strong>The restoration task sequences:</strong></p>
-                      <ul class="task-list">
-                          <li><strong>Task1:</strong> desnowing (<span class="model-name">Img2img-turbo</span>)</li>
-                          <li><strong>Task2:</strong> contrast enhancement (<span class="model-name">DIHL1</span>)</li>
-                          <li><strong>Task3:</strong> denoising (<span class="model-name">SCUnet</span>)</li>
-                      </ul>
+                      <p class="rationale" id="rationale"><strong>Think content:</strong> Image Quality Summary: The primary subject is well-lit and sharp, particularly around the face and eyes, creating strong visual focus. However, the entire image suffers from excessive digital grain or texture applied uniformly across all tonal areas, which severely degrades overall clarity and smoothness. This heavy processing masks subtle details and contributes to a generally rough appearance, despite the good composition. The overall quality leans toward good due to the effective primary focus.
+                        Directions for Improvement: Achieving superior smoothness and refined texture definition within the dark suit jacket and the background would greatly enhance realism and depth perception. Optimal clarity should be present in the facial hair and skin texture, allowing the subtle wrinkles on the forehead and brow to appear perfectly sharp and natural. Furthermore, ensuring the illuminated areas of the face maintain smooth gradients would maximize the dramatic effect of the lighting. Issues to Avoid: Excessive digital grain or artificial texture is highly distracting and negatively impacts the smooth surfaces of the face, especially around the forehead and cheekbones. This heavy processing obscures fine details and contributes to a gritty, unnatural appearance throughout the dark suit jacket. Additionally, the extreme darkness in the background areas results in a significant loss of shadow detail. Decision & Rationale: I will issue a final decision because the main technical flaw-the heavy, uniform grain-is clearly evident throughout the entire composition, including the face and suit. A localized crop is unnecessary as there remains no ambiguity regarding the nature or extent of this processing artifact. Given the effective composition and good focus on the primary subject's eyes, despite the overall graininess, the score is set above average. I assign a score reflecting the balance between good composition and poor technical execution. <strong>Answer content </strong>: {"bbox_2d": [0, 0, 0, 0], "rating": 3.46, "tool": "final"}</p>
                   </div>
               </div>
           </div>
@@ -1354,31 +1265,27 @@
           <div class="two-column glass-layout" style="align-items: center;">
             <div>
               <div class="pill-title">Zoom-IQA</div>
-              <p class="section-subtitle">
-                把原始 Abstract 粘贴在这里。示例：JarvisEvo 通过 Co-Evolutionary Editor-Evaluator
-                流程，交替推演编辑动作和自评反馈，实现与人类设计师一致的逐步创作体验。
-              </p>
         
               <div class="feature-list">
                 <div class="feature-card">
                   <div class="feature-badge">1</div>
                   <div>
-                    <strong>Preservative + Generative</strong>
-                    统一调参与生成能力，自动选择 Lightroom 与 Qwen-Image-Edit。
+                    <strong>Region-Aware Reasoning.</strong>
+                    Zoom-IQA reasons about the image quality at the regional level, providing a comprehensive assessment of the image quality across different regions, especially in the part of Direction for Improvement and Issues to Avoid.
                   </div>
                 </div>
                 <div class="feature-card">
                   <div class="feature-badge">2</div>
                   <div>
-                    <strong>Self-Reflection</strong>
-                    在每轮编辑后评估内容忠实度与艺术性，必要时回退并再规划。
+                    <strong>Iterative Refinement.</strong>
+                    Zoom-IQA can iteratively refine the restoration process by leveraging the textual rationale to guide the restoration process like the expert does (hypothesis flaws, ground with crops, verifying degradation).
                   </div>
                 </div>
                 <div class="feature-card">
                   <div class="feature-badge">3</div>
                   <div>
-                    <strong>Tool Orchestration</strong>
-                    面向 200+ Lightroom 工具建立语义路由，确保精准微调。
+                    <strong>Zero-Shot Application for Downstream Tasks.</strong>
+                    Zoom-IQA's superior reasoning capability allows for zero-shot application to downstream tasks, like image restoration. Directions for Improvement and Issues to Avoid in the textual rationale can be directly used to guide the restoration process as positive prompt and negative prompt respectively.
                   </div>
                 </div>
               </div>
@@ -1399,31 +1306,19 @@
 
             <div>
               <div class="pill-title">Key Highlights</div>
-              <p class="section-subtitle">
-                把原始 Abstract 粘贴在这里。示例：JarvisEvo 通过 Co-Evolutionary Editor-Evaluator
-                流程，交替推演编辑动作和自评反馈，实现与人类设计师一致的逐步创作体验。
-              </p>
-        
               <div class="feature-list">
                 <div class="feature-card">
                   <div class="feature-badge">1</div>
                   <div>
-                    <strong>Preservative + Generative</strong>
-                    统一调参与生成能力，自动选择 Lightroom 与 Qwen-Image-Edit。
+                    <strong>Grounded Quality Rationale Learning</strong>
+                    We first leverage our GR-IQA dataset to teach the VLM the foundational "how-to" skills: grounding textual rationales in visual regions and executing the "zoom" action.
                   </div>
                 </div>
                 <div class="feature-card">
                   <div class="feature-badge">2</div>
                   <div>
-                    <strong>Self-Reflection</strong>
-                    在每轮编辑后评估内容忠实度与艺术性，必要时回退并再规划。
-                  </div>
-                </div>
-                <div class="feature-card">
-                  <div class="feature-badge">3</div>
-                  <div>
-                    <strong>Tool Orchestration</strong>
-                    面向 200+ Lightroom 工具建立语义路由，确保精准微调。
+                    <strong>Self-Guided Exploration</strong>
+                    To enable iterative refinement without exhaustive supervision, we employ Reinforcement Learning to derive a dynamic policy that optimizes the deployment of these skills. Specifically, we adopt Group Relative Policy Optimization (GRPO) as our optimization framework, facilitating stable and efficient policy exploration.
                   </div>
                 </div>
               </div>
@@ -1434,29 +1329,33 @@
         <div class="card scroll-reveal">
           <div class="two-column glass-layout" style="align-items: center;">
             <div>
-              <div class="pill-title">Dataset</div>
-              <h2 class="section-title">DATASET CURATION PIPELINE</h2>
+              <div class="pill-title">DATASET CURATION PIPELINE</div>
+
+              <p class="section-subtitle">
+                Our pipeline is designed to avoid visual hallucination by providing rationales that are verifiably grounded in visual regions with Gemini-2.5-pro.
+              </p>
+
+              <div class="feature-card">
+                <div class="feature-badge">1</div>
+                <div>
+                  <strong>Data Generation.</strong>
+                  We prompt the closed-source VLM, Gemini-2.5-pro, on IQA dataset images using a structured prompt. This compels the VLM to generate a two-part response: a textual rationale and a JSON action.  
+                </div>
+              </div>
         
               <div class="feature-list">
                 <div class="feature-card">
-                  <div class="feature-badge">1</div>
-                  <div>
-                    <strong>Preservative + Generative</strong>
-                    统一调参与生成能力，自动选择 Lightroom 与 Qwen-Image-Edit。
-                  </div>
-                </div>
-                <div class="feature-card">
                   <div class="feature-badge">2</div>
                   <div>
-                    <strong>Self-Reflection</strong>
-                    在每轮编辑后评估内容忠实度与艺术性，必要时回退并再规划。
+                    <strong>Visual Reliance Filtering (VRF).</strong>
+                    VRF enforces grounding by measuring the generative output shift (with vs. without the image);
                   </div>
                 </div>
                 <div class="feature-card">
                   <div class="feature-badge">3</div>
                   <div>
-                    <strong>Tool Orchestration</strong>
-                    面向 200+ Lightroom 工具建立语义路由，确保精准微调。
+                    <strong>Hint-Augmented Consistency Filtering (HACF).</strong>
+                    HACF filters hallucination-like descriptions at the sentence level to maintain fluency.
                   </div>
                 </div>
               </div>
