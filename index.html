@@ -374,56 +374,11 @@
         color: var(--accent-start); /* 悬停时变成紫色/蓝色 */
       }
 
-      /* 上标数字样式 */
+      /* 通讯作者标记 */
       .author-name sup {
         color: var(--accent-end);
         font-weight: 600;
         margin-left: 2px;
-      }
-
-      .hero-divider {
-        width: 100%;
-        height: 1px;
-        margin: 1.5rem auto;
-        background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.15), transparent);
-        border-radius: 999px;
-      }
-
-      .institution-logos {
-        margin-top: 1.25rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-      }
-
-      .institution-logos a {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.65rem;
-        padding: 0.65rem 1.25rem;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.75);
-        background: linear-gradient(120deg, rgba(255, 255, 255, 0.9), rgba(240, 244, 255, 0.55));
-        backdrop-filter: blur(12px);
-        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .institution-logos a:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 22px 40px rgba(99, 102, 241, 0.25);
-      }
-
-      .institution-logos img {
-        height: 28px;
-        width: auto;
-      }
-
-      .institution-logos span {
-        font-size: 0.98rem;
-        font-weight: 600;
-        color: var(--text);
       }
 
       .section {
@@ -1136,29 +1091,17 @@
       
           <div class="meta-row">
             <span class="author-name">
-              <a href="https://scholar.google.com.hk/citations?user=GHz1gUIAAAAJ&hl=en" target="_blank">Guoqiang Liang</a><sup>1</sup>
+              <a href="https://scholar.google.com.hk/citations?user=GHz1gUIAAAAJ&hl=en" target="_blank">Guoqiang Liang</a>
             </span>
             <span class="author-name">
-              <a href="https://scholar.google.com.hk/citations?hl=en&user=Fq9SgKYAAAAJ" target="_blank">Jianyi Wang</a><sup>1</sup>
+              <a href="https://scholar.google.com.hk/citations?hl=en&user=Fq9SgKYAAAAJ" target="_blank">Jianyi Wang</a>
             </span>
             <span class="author-name">
-              <a href="https://scholar.google.com.hk/citations?hl=en&user=wMDgLCYAAAAJ" target="_blank">Zhonghua Wu</a><sup>2</sup>
+              <a href="https://scholar.google.com.hk/citations?hl=en&user=wMDgLCYAAAAJ" target="_blank">Zhonghua Wu</a>
             </span>
             <span class="author-name">
-              <a href="https://scholar.google.com.hk/citations?user=suaDwBQAAAAJ&hl=en" target="_blank">Shangchen Zhou</a><sup>1,<span class="mail-char">✉</span></sup>
+              <a href="https://scholar.google.com.hk/citations?user=suaDwBQAAAAJ&hl=en" target="_blank">Shangchen Zhou</a><sup><span class="mail-char">✉</span></sup>
             </span>
-          </div>
-      
-          <div class="hero-divider"></div>
-          <div class="institution-logos">
-            <a href="https://www.mmlab-ntu.com" target="_blank" rel="noopener noreferrer">
-              <img src="./zoomiqa/NTU_Logo.png" alt="Nanyang Technological University logo" onerror="this.remove()"/>
-              <span>S-Lab, Nanyang Technological University<sup>1</sup></span>
-            </a>
-            <a href="https://www.sensetime.com/en" target="_blank" rel="noopener noreferrer">
-              <img src="./zoomiqa/SenseTime_logo.png" alt="SenseTime Research logo" onerror="this.remove()"/>
-              <span>SenseTime Research<sup>2</sup></span>
-            </a>
           </div>
       
         </div>
