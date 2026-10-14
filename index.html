@@ -414,26 +414,6 @@
         margin-bottom: 2rem;
       }
 
-      .release-card a {
-        color: #4338ca;
-        text-decoration: underline;
-        text-underline-offset: 0.2em;
-      }
-
-      .release-card .section-subtitle {
-        margin-bottom: 1.25rem;
-      }
-
-      @media (max-width: 600px) {
-        .release-card {
-          padding: 1.5rem;
-        }
-
-        .release-card .pill-title {
-          font-size: 1.4rem;
-        }
-      }
-
       .two-column {
         display: grid;
         gap: 1.5rem;
@@ -1106,7 +1086,7 @@
             <a class="cta" href="https://arxiv.org/abs/2601.02918" target="_blank" rel="noopener noreferrer">📄 Paper</a>
             <a class="cta" href="https://github.com/EthanLiang99/Zoom-IQA" target="_blank" rel="noopener noreferrer">💻 Code</a>
             <a class="cta" href="https://huggingface.co/Ethanliang99/Zoom-IQA-7B" target="_blank" rel="noopener noreferrer">🤗 Model</a>
-            <a class="cta" href="https://huggingface.co/datasets/Ethanliang99/GR-IQA" target="_blank" rel="noopener noreferrer">📊 Dataset</a>
+            <span class="cta" aria-disabled="true" title="Dataset release is being verified">📊 Dataset (Soon)</span>
           </div>
       
           <div class="meta-row">
@@ -1128,23 +1108,6 @@
       </header>
 
       <section class="section">
-        <div class="card release-card" id="data-and-training">
-          <h2 class="pill-title">Data &amp; Training</h2>
-          <p class="section-subtitle">
-            The <a href="https://huggingface.co/datasets/Ethanliang99/GR-IQA" target="_blank" rel="noopener noreferrer">GR-IQA training dataset</a> is now available on Hugging Face, including image-quality conversations, original images, follow-up crops, and a LLaMA-Factory dataset configuration.
-          </p>
-          <ul class="list">
-            <li>
-              <strong>Stage 1: Supervised Fine-Tuning (SFT)</strong>
-              We use <a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener noreferrer">LLaMA-Factory</a> to train the SFT model based on Qwen2.5-VL-Instruct. Follow the <a href="https://github.com/EthanLiang99/Zoom-IQA#training" target="_blank" rel="noopener noreferrer">SFT training instructions</a> to prepare GR-IQA and launch training.
-            </li>
-            <li>
-              <strong>Stage 2: Reinforcement Learning (RL)</strong>
-              The RL training code is being cleaned up and will be released in the <a href="https://github.com/EthanLiang99/Zoom-IQA" target="_blank" rel="noopener noreferrer">code repository</a>.
-            </li>
-          </ul>
-        </div>
-
         <div class="card scroll-reveal">
           <div class="pill-title">Qualitative Results on image quality assessment</div>
           <div class="section-subtitle">
